@@ -14,8 +14,10 @@ I thought this was an okay compromise. Using raw pointers would have required me
 
 Tests weren't required for this solution per the prompt, but I find test-driven-development easiest in domains like this, so I also included the gtest suite here. This also allows you to easily evaluate the solution, and add your own tests, if you desire.
 
+The google test suite is downloaded and built automatically with CMake.
+
 ### Sources
-I used the gtest documentation for fast bringup, [found here](https://google.github.io/googletest/quickstart-cmake.html).
+I used the gtest quick-start documentation for fast bringup of my CMakeLists.txt, [found here](https://google.github.io/googletest/quickstart-cmake.html).
 
 
 ## Building & Running Tests (Linux)

@@ -2,7 +2,7 @@
 
 namespace Syn {
 
-CircularBuffer::CircularBuffer(uint32_t size)
+CircularBuffer::CircularBuffer(const uint32_t size)
 	: buffer{nullptr},
 	  head{0},
 	  tail{0},
@@ -14,11 +14,11 @@ CircularBuffer::CircularBuffer(uint32_t size)
 	}
 }
 
-bool CircularBuffer::push(uint8_t value)
+bool CircularBuffer::push(const uint8_t value)
 {
 	bool result = false;
 
-	if (!isFull()) {
+	if (buffer && !isFull()) {
 		buffer[head] = value;
 		incrementHead();
 		currentSize++;
@@ -33,7 +33,7 @@ bool CircularBuffer::pop(uint8_t& value)
 {
 	bool result = false;
 
-	if (!isEmpty()) {
+	if (buffer && !isEmpty()) {
 		value = buffer[tail];
 		incrementTail();
 		currentSize--;

@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include "circular_buffer.h"
 
-using namespace Syn;
 
 TEST(CircularBufferTests, SmokeTest) {
 	EXPECT_TRUE(true);
@@ -11,37 +10,37 @@ TEST(CircularBufferTests, SmokeTest) {
 // Basic class tests
 
 TEST(CircularBufferTests, CanInstantiate1) {
-	CircularBuffer buffer(10);
+	Syn::CircularBuffer buffer(10);
 }
 
 TEST(CircularBufferTests, CanInstantiate2) {
-	CircularBuffer buffer(0);
+	Syn::CircularBuffer buffer(0);
 }
 
 
 // Push tests
 
 TEST(CircularBufferTests, AddOne_zeroSize){
-	CircularBuffer buffer(0);
+	Syn::CircularBuffer buffer(0);
 
 	EXPECT_FALSE(buffer.push(12));
 }
 
 TEST(CircularBufferTests, AddOne){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 
 	EXPECT_TRUE(buffer.push(12));
 }
 
 TEST(CircularBufferTests, AddTwo){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	
 	EXPECT_TRUE(buffer.push(12));
 	EXPECT_TRUE(buffer.push(14));
 }
 
 TEST(CircularBufferTests, AddMax){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	
 	ASSERT_TRUE(buffer.push(12));
 	ASSERT_TRUE(buffer.push(14));
@@ -51,7 +50,7 @@ TEST(CircularBufferTests, AddMax){
 }
 
 TEST(CircularBufferTests, AddTooMany){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	
 	ASSERT_TRUE(buffer.push(12));
 	ASSERT_TRUE(buffer.push(14));
@@ -66,21 +65,21 @@ TEST(CircularBufferTests, AddTooMany){
 // Pop tests
 
 TEST(CircularBufferTests, PopEmpty1){
-	CircularBuffer buffer(0);
+	Syn::CircularBuffer buffer(0);
 	uint8_t popped;
 
 	EXPECT_FALSE(buffer.pop(popped));
 }
 
 TEST(CircularBufferTests, PopEmpty2){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	uint8_t popped;
 
 	EXPECT_FALSE(buffer.pop(popped));
 }
 
 TEST(CircularBufferTests, PopOne){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	uint8_t popped = 0;
 	uint8_t pushed = 12;
 
@@ -90,7 +89,7 @@ TEST(CircularBufferTests, PopOne){
 }
 
 TEST(CircularBufferTests, PopTwo){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	uint8_t popped = 0;
 	uint8_t pushed1 = 12;
 	uint8_t pushed2 = 14;
@@ -105,7 +104,7 @@ TEST(CircularBufferTests, PopTwo){
 }
 
 TEST(CircularBufferTests, PopMax){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	uint8_t popped = 0;
 	uint8_t pushed1 = 12;
 	uint8_t pushed2 = 14;
@@ -132,7 +131,7 @@ TEST(CircularBufferTests, PopMax){
 }
 
 TEST(CircularBufferTests, PopTooMany){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	uint8_t popped = 0;
 	uint8_t pushed1 = 12;
 	uint8_t pushed2 = 14;
@@ -160,7 +159,7 @@ TEST(CircularBufferTests, PopTooMany){
 
 // Push and pop two elements, one at a time
 TEST(CircularBufferTests, PushPop2){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	uint8_t popped = 0;
 	uint8_t pushed1 = 12;
 	uint8_t pushed2 = 14;
@@ -176,7 +175,7 @@ TEST(CircularBufferTests, PushPop2){
 
 // Push and pop the maximum number of elements, one at a time
 TEST(CircularBufferTests, PushPopMax){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	uint8_t popped = 0;
 	uint8_t pushed1 = 12;
 	uint8_t pushed2 = 14;
@@ -207,7 +206,7 @@ TEST(CircularBufferTests, PushPopMax){
 
 // Push and pop beyond the buffer size (so indexes wrap), one at a time
 TEST(CircularBufferTests, PushPopWrapBuffer_oneAtATime){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	uint8_t popped = 0;
 	uint8_t pushed1 = 12;
 	uint8_t pushed2 = 14;
@@ -248,7 +247,7 @@ TEST(CircularBufferTests, PushPopWrapBuffer_oneAtATime){
 
 // Push and pop beyond the buffer size (so indexes wrap), with multiple at a time
 TEST(CircularBufferTests, PushPopWrapBuffer_severalAtATime){
-	CircularBuffer buffer(5);
+	Syn::CircularBuffer buffer(5);
 	uint8_t popped = 0;
 	uint8_t pushed1 = 12;
 	uint8_t pushed2 = 14;

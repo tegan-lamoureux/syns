@@ -8,10 +8,10 @@ namespace Syn {
 class CircularBuffer {
 public:
 	CircularBuffer() = delete; // force size at creation
-	explicit CircularBuffer(uint32_t size);
+	explicit CircularBuffer(const uint32_t size);
 
 	// Push value into buffer. Return false when full.
-	bool push(uint8_t value);
+	bool push(const uint8_t value);
 
 	// Remove value from buffer. Return false when empty.
 	bool pop(uint8_t& value);
