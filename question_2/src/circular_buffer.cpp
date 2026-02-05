@@ -18,12 +18,28 @@ bool CircularBuffer::push(uint8_t value)
 {
 	bool result = false;
 
+	if (!isFull()) {
+		buffer[head] = value;
+		incrementHead();
+		currentSize++;
+
+		result = true;
+	}
+
 	return result;
 }
 
 bool CircularBuffer::pop(uint8_t& value)
 {
 	bool result = false;
+
+	if (!isEmpty()) {
+		value = buffer[tail];
+		incrementTail();
+		currentSize--;
+
+		result = true;
+	}
 
 	return result;
 }
