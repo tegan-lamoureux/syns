@@ -22,9 +22,9 @@ I used the gtest documentation for fast bringup, [found here](https://google.git
 
 From the solution directory:
 
-1. `cmake -S . -B build`
-2. `cmake --build build`
-3. `build/circular_buffer_test`
+1. Initialize cmake: `cmake -S . -B build`
+2. Build the tests: `cmake --build build`
+3. Run the tests: `build/circular_buffer_test`
 
 ### Note: 
 This should build cross-platform, but I only had a linux computer to develop on. Commands will need to be modified slightly to build under Windows.
