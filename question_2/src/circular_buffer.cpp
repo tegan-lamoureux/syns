@@ -2,18 +2,12 @@
 
 namespace Syn {
 
-explicit CircularBuffer::CircularBuffer(uint32_t size)
-    : buffer(nullptr)
+CircularBuffer::CircularBuffer(uint32_t size)
+	: buffer(nullptr)
 {
-    if (size) {
-        buffer = new uint32_t[size];
-    }
+	if (size) {
+		buffer = std::make_unique<uint8_t[]>(size);
+	}
 }
-
-CircularBuffer::CircularBuffer()
-    : buffer(nullptr)
-{
-}
-
 
 }

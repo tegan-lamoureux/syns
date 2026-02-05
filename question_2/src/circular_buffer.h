@@ -7,17 +7,12 @@ namespace Syn {
 
 class CircularBuffer {
 public:
-    // Constructor/destructor
-    CircularBuffer() = delete; // force size at creation
-    explicit CircularBuffer(uint32_t size);
-    ~CircularBuffer();
-
-    // Copy constructor
-    CircularBuffer(CircularBuffer const& copy);
+	CircularBuffer() = delete; // force size at creation
+	explicit CircularBuffer(uint32_t size);
 
 
 private:
-    std::unique_ptr<uint8_t> buffer;
+	std::unique_ptr<uint8_t[]> buffer;
 };
 
 }
