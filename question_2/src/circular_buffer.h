@@ -3,7 +3,7 @@
 #include <memory>
 #include <cstdint>
 
-namespace Synspective {
+namespace Syn {
 
 class CircularBuffer {
 public:

@@ -1,6 +1,6 @@
 #include "circular_buffer.h"
 
-namespace Synspective {
+namespace Syn {
 
 explicit CircularBuffer::CircularBuffer(uint32_t size)
     : buffer(nullptr)

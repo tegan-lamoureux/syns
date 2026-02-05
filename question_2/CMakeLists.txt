@@ -2,7 +2,7 @@
 # https://google.github.io/googletest/quickstart-cmake.html 
 
 cmake_minimum_required(VERSION 3.14)
-project(syn_question_2)
+project(syns_question_2)
 
 cmake_policy(SET CMP0135 NEW) # Suppress error from google's config
 
