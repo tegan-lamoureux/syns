@@ -31,3 +31,32 @@ TEST(CarTests, GetDataEmpty) {
 	ASSERT_NE(1984, car.getYear());
 }
 
+TEST(CarTests, Equality) {
+	Syn::Car car1("Toyota", "GR Yaris", 2024);
+	Syn::Car car2("Toyota", "GR Yaris", 2024);
+	
+	ASSERT_TRUE(car1 == car2);
+}
+
+TEST(CarTests, Inequality) {
+	Syn::Car car1("Toyota", "Corolla", 1990);
+	Syn::Car car2("Toyota", "Supra", 1997);
+	
+	ASSERT_TRUE(car1 != car2);
+}
+
+TEST(CarTests, LessThan) {
+	Syn::Car car1("Toyota", "Corolla", 1990);
+	Syn::Car car2("Toyota", "Supra", 1997);
+	
+	ASSERT_TRUE(car1 < car2);
+	ASSERT_FALSE(car2 < car1);
+}
+
+TEST(CarTests, GreaterThan) {
+	Syn::Car car1("Toyota", "Corolla", 1990);
+	Syn::Car car2("Toyota", "Supra", 1997);
+	
+	ASSERT_FALSE(car1 > car2);
+	ASSERT_TRUE(car2 > car1);
+}

@@ -2,6 +2,9 @@
 
 namespace Syn {
 
+
+// LinkedList Definition
+
 LinkedList::LinkedList()
 	: head{nullptr},
 	  maxSize{UINT32_MAX},
@@ -18,12 +21,12 @@ LinkedList::LinkedList(const uint32_t size)
 
 std::size_t LinkedList::size() const
 {
-    return listSize;
+	return listSize;
 }
 
 bool LinkedList::isEmpty() const
 {
-    return head == nullptr;
+	return head == nullptr;
 }
 
 bool LinkedList::appendFront(const Car &car)
@@ -49,7 +52,64 @@ bool LinkedList::appendFront(const Car &car)
 		result = true;
 	}
 
-    return result;
+	return result;
+}
+
+ListIterator LinkedList::begin()
+{
+	return ListIterator(this->head);
+}
+
+ListIterator LinkedList::end()
+{
+	return ListIterator();
+}
+
+
+// Iterator Definition
+
+ListIterator::ListIterator()
+	: currentNode{nullptr},
+	  previousNode{nullptr}
+{
+}
+
+ListIterator::ListIterator(const std::unique_ptr<Node> &node)
+	: currentNode{node.get()},
+	  previousNode{nullptr}
+{
+}
+
+ListIterator &ListIterator::operator++()
+{
+	// Move down the list by 1 list item
+	if (currentNode != nullptr) {
+		previousNode = currentNode;
+		currentNode = currentNode->next.get();
+	}
+	return *this;
+}
+
+ListIterator ListIterator::operator++(int)
+{
+	ListIterator temp = *this; // save un-iterated copy for returning (this is post-increment)
+	++ *this;
+	return temp;
+}
+
+bool ListIterator::operator!=(const ListIterator &other) const
+{
+	return this->currentNode != other.currentNode;
+}
+
+bool ListIterator::operator==(const ListIterator &other) const
+{
+	return this->currentNode == other.currentNode;
+}
+
+Car& ListIterator::operator*() const
+{
+	return *this->currentNode->data;
 }
 
 }
