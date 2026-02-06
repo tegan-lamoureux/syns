@@ -52,9 +52,8 @@ public:
 	ListIterator begin() const;
 	ListIterator end() const;
 
-	// Per the requirements, this takes in an empty list and returns a new copy of that 
-	// list, which is this list but sorted in descending order. This means it *does* 
-	// allocate memory.
+	// Per the requirements, this takes in an empty list and fills that list with all data from
+	// this list, but sorted in descending order. This means it *does* allocate memory.
 	//
 	// Returns false if the input list is not empty or this list is empty. True otherwise.
 	bool sortDescending(LinkedList& sorted);
@@ -63,6 +62,15 @@ private:
 	std::unique_ptr<Node> head;
 	uint32_t maxSize;
 	std::size_t listSize;
+
+	// Required since we need to traverse to find list midpoint (& b/c head is modified)
+	std::unique_ptr<Node> split(std::unique_ptr<Node>& head);
+
+	// Recursive merge sort
+	std::unique_ptr<Node> mergeSort(std::unique_ptr<Node> node);
+	
+	// Merge two already sorted lists
+	std::unique_ptr<Node> merge(std::unique_ptr<Node> left, std::unique_ptr<Node> right);
 };
 
 }

@@ -4,9 +4,7 @@
 
 ### Assumptions
 
-For questions 2 and 3, it was assumed reentrancy and thread safety were not concerns. The solutions are absolutely neither, and in a multithreaded application, concurrency issues would immediately arise. 
-
-This could be mitigated by adding locking into the classes (for ex, via std::unique_lock). This does, however, require hardware support for an atomic test-and-set assembly instruction. These exist on nearly all SOCs and high powered ARM processors, but smaller ones, like the Cortex-M0, lack this. In that case, techniques such as disabling interrupts for critical sections, or using a lockless data structure, could be used.
+For questions 2 and 3, it was assumed reentrancy and thread safety were not concerns. The solutions are absolutely neither, and in a multithreaded application, concurrency issues would immediately arise. This could be mitigated by adding locking into the classes (for ex, via std::unique_lock) on hardware that supports it (some smaller MCUs, like the Cortex-M0, do not have the silicon support for test-and-set).
 
 I also didn't add nearly as many class members as could be added (appendBack(), delete(iterator&), reverse(), etc). I kept it only to the scope of the problem.
 
@@ -16,9 +14,7 @@ As with the previous solution I am using smart pointer features from C++11 for g
 
 **Iterators**: I chose to use a custom iterator for the List class, to help quality of life in testing and to encapsulate the pointers and memory management internally.
 
-#### Heap Disclaimer 
-
-Just a small note: I'm fully aware of the challenges and complexities of heap-allocation on embedded systems, especially high-reliability ones, in regards to fragmentation and allocation performance. 
+**Heap Disclaimer**: Just a small note: I'm fully aware of the challenges and complexities of heap-allocation on embedded systems, especially high-reliability ones, in regards to fragmentation and allocation performance. 
 
 ### Sorting
 
@@ -26,7 +22,9 @@ I'm an embedded engineer, and while I know the basic sorts and their runtimes, t
 
 I wanted a sort that didn't have heavy data structures attached to it or extreme complexity in implementation, because of my own time constraints in finishing this exercise. This led me to evaluate Quick sort and Merge sort, when targeting an average complexity of `O(n log(n))`, . 
 
-Worst case, however, has Quick sort with `O(n^2)` versus Merge's `O(n log(n))`, so I decided to go with that. No stronger reasons. It depends highly on system architecture and data format, [as I read in this great thread](https://stackoverflow.com/questions/70402/why-is-quicksort-better-than-mergesort), so without further specification, this should be sufficient.
+Worst case, however, has Quick sort with `O(n^2)` versus Merge's `O(n log(n))`, so I decided to go with that. No stronger reasons. It depends highly on system architecture and data format for which algorithm is best, [as I read in this great thread](https://stackoverflow.com/questions/70402/why-is-quicksort-better-than-mergesort).
+
+Also, one should take care with stack depth, re: recursion, on embedded systems. I would be extremely hesitant to use recursion on a critical system.
 
 ### Sources
 
