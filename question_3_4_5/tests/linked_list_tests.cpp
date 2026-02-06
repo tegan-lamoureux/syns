@@ -133,6 +133,22 @@ TEST(LinkedListTests, CanTraverseWithPreIncrement) {
 	}
 }
 
+TEST(LinkedListTests, TraverseEmptyIsRuntimeSafe) {
+	Syn::LinkedList list;
+
+	for (auto car : list) {
+		// nop
+	}
+	
+	auto start = list.begin();
+	ASSERT_TRUE(start == list.end());
+
+	start++;
+	ASSERT_TRUE(start == list.end());
+
+	// *start == Undefined Behavior (Expected)
+}
+
 TEST(LinkedListTests, CanCheckIteratorEquality) {
 	std::vector<Syn::Car> cars {
 		Syn::Car("Toyota", "Camry", 2012),

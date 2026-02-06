@@ -8,31 +8,45 @@
 
 
 // The one, the only.
+// Build two lists, different order. Sort both, check proper order.
 TEST(SortTests, Sort) {
-	Syn::LinkedList list1(10);
-	Syn::LinkedList list2(10);
+	std::vector<Syn::Car> cars1 {
+		Syn::Car("Toyota", "Camry", 2012),
+		Syn::Car("Mazda", "RX7", 1995),
+		Syn::Car("Honda", "Civic Type R", 2014),
+		Syn::Car("Toyota", "Supra", 1997),
+		Syn::Car("Honda", "Prelude", 1997)	
+	};
+	std::vector<Syn::Car> cars2 {
+		Syn::Car("Toyota", "Supra", 1997),
+		Syn::Car("Honda", "Civic Type R", 2014),
+		Syn::Car("Honda", "Prelude", 1997),
+		Syn::Car("Mazda", "RX7", 1995),
+		Syn::Car("Toyota", "Camry", 2012)
+	};
 
-	Syn::ListSorter::Sort(list1, list2);
+	// Build lists
+	Syn::LinkedList list1(5);
+	Syn::LinkedList list2(5);
+	for (auto car : cars1) {
+		ASSERT_TRUE(list1.appendFront(car));
+	}
+	ASSERT_EQ(5, list1.size());
+	for (auto car : cars2) {
+		ASSERT_TRUE(list2.appendFront(car));
+	}
+	ASSERT_EQ(5, list2.size());
 
-	// Did it do it? Print results along with asserts
+	// Sort first
+	Syn::LinkedList sortedList(5);
+	Syn::ListSorter::Sort(list1, sortedList);
 
-	// This is too much. 
-	// Do it logically. Iterate and assert each is after the next
-
-	// std::cout << "Sorted List: " << std::endl<< std::endl;
-	// for (int i = 0; i < 10; i++) {
-	// 	std::cout << std::left 
-	// 		<< "Original[" << i << "] Make: " << std::setw(20)  << "Toyota"
-	// 		<< "Sorted["   << i << "] Make: " << std::setw(20)  << "Toyota"
-	// 		<< std::endl
-
-	// 		<< std::setw(20) << "            Model: " << std::setw(20)  << "Yaris"
-	// 		<< std::setw(20) << "        Model: "   << std::setw(20)  << "Camry"
-	// 		<< std::endl
-			
-	// 		<< std::setw(20) << "            Year: " << std::setw(20)  << "2014"
-	// 		<< std::setw(20) << "        Year: "   << std::setw(20)  << "2019"
-	// 		<< std::endl << std::endl;
-	// }
+	// // Check list is in ascending order. 
+	auto previousCar = sortedList.begin();
+	for (auto currentCar : sortedList) {
+		if (previousCar != sortedList.begin()) { // skip first
+			ASSERT_TRUE(*previousCar < currentCar);
+		}
+	}
 }
 

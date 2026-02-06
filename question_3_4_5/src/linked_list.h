@@ -26,8 +26,8 @@ public:
 	Car& operator*() const;
 
 private:
-	const Node *previousNode;
-	const Node *currentNode;
+	Node *previousNode;
+	Node *currentNode;
 };
 
 
