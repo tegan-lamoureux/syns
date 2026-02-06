@@ -55,15 +55,28 @@ bool LinkedList::appendFront(const Car &car)
 	return result;
 }
 
-ListIterator LinkedList::begin()
+ListIterator LinkedList::begin() const
 {
 	return ListIterator(this->head);
 }
 
-ListIterator LinkedList::end()
+ListIterator LinkedList::end() const
 {
 	return ListIterator();
 }
+
+bool LinkedList::sortDescending(LinkedList &sorted)
+{
+	bool result = false;
+
+	if (this->listSize > 0 && sorted.listSize == 0) {
+		
+	}
+
+    return result;
+}
+
+
 
 
 // Iterator Definition
