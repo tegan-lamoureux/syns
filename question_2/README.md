@@ -4,7 +4,7 @@
 
 ### Complexity 
 
-The question sheet said to not use structures from std library, so instead of using a vector here for internal storage, I am using a pointer and heap-allocated memory. I am, however, using C++14 smart pointers and heap allocation helpers (make_unique...). This means the class can not be copied trivially with an assignment operator, but must use the std::move paradigm.
+The question sheet said to not use structures from std library, so instead of using a vector here for internal storage, I am using a pointer and heap-allocated memory. I am, however, using C++11 smart pointers and heap allocation helpers (make_unique...). This means the class can not be copied trivially with an assignment operator, but must use the std::move paradigm.
 
 I thought this was an okay compromise. Using raw pointers would have required me to follow [the rule of 5](https://en.cppreference.com/w/cpp/language/rule_of_three.html), which massively increases complexity.
 
