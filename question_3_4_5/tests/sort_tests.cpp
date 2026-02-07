@@ -164,6 +164,16 @@ TEST(SortTests, SortNonEmptyDestinationList) {
 	ASSERT_FALSE(Syn::MergeSort::sortDescending(list1, sortedList));
 }
 
+TEST(SortTests, SortMismatchedSizeLists) {
+	Syn::LinkedList list1(2);
+	ASSERT_TRUE(list1.appendFront(Syn::Car("Mazda", "RX7", 1995)));
+	ASSERT_TRUE(list1.appendFront(Syn::Car("Honda", "Civic", 1997)));
+	ASSERT_EQ(2, list1.size());
+
+	Syn::LinkedList sortedList(1); // too small
+	ASSERT_FALSE(Syn::MergeSort::sortDescending(list1, sortedList));
+}
+
 TEST(SortTests, SortListOf1) {
 	Syn::LinkedList list1(1);
 	ASSERT_TRUE(list1.appendFront(Syn::Car("Mazda", "RX7", 1995)));

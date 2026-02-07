@@ -17,17 +17,22 @@ public:
 	static bool sortDescending(const LinkedList& original, LinkedList& sorted)
 	{
 		bool result = false;
+		bool insertionProblem = false;
 
 		if (original.listSize > 0 && sorted.listSize == 0) {
 			// First copy into new list, which we will work from
 			// This reverses order. We don't care, we will sort.
 			for (auto item : original) {
-				sorted.appendFront(item);
+				if(!sorted.appendFront(item)) {
+					insertionProblem = true; 
+					break; // something happened on insertion (probably too small destination list)
+				}
 			}
 
-			sorted.head = mergeSort(std::move(sorted.head));
-
-			result = true;
+			if (!insertionProblem) {
+				sorted.head = mergeSort(std::move(sorted.head));
+				result = true;
+			}
 		}
 
 		return result;
