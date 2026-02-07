@@ -16,6 +16,28 @@ Tests weren't required for this solution per the prompt, but I find test-driven-
 
 The google test suite is downloaded and built automatically with CMake.
 
+### Heap Check
+
+With dynamic memory, I like checking with valgrind. Please find the output below:
+
+```
+▶ valgrind ./question_2/build/circular_buffer_test > /dev/null              
+==81897== Memcheck, a memory error detector
+==81897== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==81897== Using Valgrind-3.25.1 and LibVEX; rerun with -h for copyright info
+==81897== Command: ./question_2/build/circular_buffer_test
+==81897== 
+==81897== 
+==81897== HEAP SUMMARY:
+==81897==     in use at exit: 0 bytes in 0 blocks
+==81897==   total heap usage: 549 allocs, 549 frees, 147,678 bytes allocated
+==81897== 
+==81897== All heap blocks were freed -- no leaks are possible
+==81897== 
+==81897== For lists of detected and suppressed errors, rerun with: -s
+==81897== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+
 ### Sources
 I used the gtest quick-start documentation for fast bringup of my CMakeLists.txt, [found here](https://google.github.io/googletest/quickstart-cmake.html).
 

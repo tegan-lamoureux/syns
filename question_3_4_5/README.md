@@ -42,6 +42,28 @@ As with Solution 2, I used google test suite, which is downloaded and built auto
 
 Assumptions made in testing were limiting the test scope to the defined problem. I did not implement extra features of the Linked List (remove, reverse, etc..), so these areas will not be tested.
 
+### Heap Check
+
+With dynamic memory, I like checking with valgrind. Please find the output below:
+
+```
+▶ valgrind ./question_3_4_5/build/linked_list_tests > /dev/null 
+==82501== Memcheck, a memory error detector
+==82501== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==82501== Using Valgrind-3.25.1 and LibVEX; rerun with -h for copyright info
+==82501== Command: ./question_3_4_5/build/linked_list_tests
+==82501== 
+==82501== 
+==82501== HEAP SUMMARY:
+==82501==     in use at exit: 0 bytes in 0 blocks
+==82501==   total heap usage: 684 allocs, 684 frees, 163,188 bytes allocated
+==82501== 
+==82501== All heap blocks were freed -- no leaks are possible
+==82501== 
+==82501== For lists of detected and suppressed errors, rerun with: -s
+==82501== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
+
 ## Building & Running Tests (Linux)
 
 From the solution directory:
