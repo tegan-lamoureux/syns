@@ -26,8 +26,8 @@ private:
 	void incrementHead();
 	void incrementTail();
 
-	bool isEmpty();
-	bool isFull();
+	bool isEmpty() const;
+	bool isFull() const;
 };
 
 }

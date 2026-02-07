@@ -64,12 +64,12 @@ inline void CircularBuffer::incrementTail()
 	}
 }
 
-inline bool CircularBuffer::isEmpty()
+inline bool CircularBuffer::isEmpty() const
 {
     return currentSize == 0;
 }
 
-inline bool CircularBuffer::isFull()
+inline bool CircularBuffer::isFull() const
 {
     return currentSize == allocatedSize;
 }
