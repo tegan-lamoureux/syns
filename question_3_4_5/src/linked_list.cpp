@@ -77,6 +77,8 @@ bool LinkedList::sortDescending(LinkedList &sorted)
 		}
 
 		sorted.head = mergeSort(std::move(sorted.head));
+
+		result = true;
 	}
 
     return result;
@@ -101,7 +103,7 @@ std::unique_ptr<Node> LinkedList::split(std::unique_ptr<Node>& head)
 
 std::unique_ptr<Node> LinkedList::mergeSort(std::unique_ptr<Node> list)
 {
-    if (!list && !list->next)
+    if (!list || !list->next)
 		return list; // recursion end
 
 	std::unique_ptr<Node> secondList = split(list);

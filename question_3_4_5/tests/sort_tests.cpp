@@ -15,6 +15,7 @@ TEST(SortTests, Sort) {
 		Syn::Car("Toyota", "Supra", 1997),
 		Syn::Car("Honda", "Prelude", 1997)	
 	};
+
 	std::vector<Syn::Car> cars2 {
 		Syn::Car("Toyota", "Supra", 1997),
 		Syn::Car("Honda", "Civic Type R", 2014),
@@ -26,10 +27,12 @@ TEST(SortTests, Sort) {
 	// Build lists
 	Syn::LinkedList list1(5);
 	Syn::LinkedList list2(5);
+
 	for (auto car : cars1) {
 		ASSERT_TRUE(list1.appendFront(car));
 	}
 	ASSERT_EQ(5, list1.size());
+
 	for (auto car : cars2) {
 		ASSERT_TRUE(list2.appendFront(car));
 	}
@@ -40,11 +43,17 @@ TEST(SortTests, Sort) {
 	list1.sortDescending(sortedList);
 
 	// // Check list is in ascending order. 
+	std::cout << std:: endl << "Check first sort: " << std::endl;
+
 	uint32_t previousYear = 0;
 	uint32_t currentYear  = 0;
+
 	for (auto currentCar : sortedList) {
 		if (previousYear) { // skip first
 			currentYear = currentCar.getYear();
+
+			std:: cout << "Checking that `" << previousYear << "` > `" 
+					   << currentYear << "`." << std::endl;
 			ASSERT_GE(previousYear, currentYear);
 		}
 		previousYear = currentCar.getYear();
@@ -55,15 +64,22 @@ TEST(SortTests, Sort) {
 	list2.sortDescending(sortedList2);
 
 	// // Check list is in ascending order. 
+	std::cout << std:: endl << "Check second sort: " << std::endl;
+
 	previousYear = 0;
 	currentYear  = 0;
+
 	for (auto currentCar : sortedList2) {
 		if (previousYear) { // skip first
 			currentYear = currentCar.getYear();
+			
+			std:: cout << "Checking that `" << previousYear << "` > `" 
+					   << currentYear << "`." << std::endl;
 			ASSERT_GE(previousYear, currentYear);
 		}
 		previousYear = currentCar.getYear();
 	}
+	std::cout << std::endl;
 }
 
 // check list duplicates
