@@ -149,9 +149,19 @@ TEST(SortTests, SortEmptyList) {
 	ASSERT_EQ(0, list1.size());
 
 	Syn::LinkedList sortedList;
-	Syn::MergeSort::sortDescending(list1, sortedList);
+	EXPECT_FALSE(Syn::MergeSort::sortDescending(list1, sortedList));
 
 	ASSERT_EQ(0, sortedList.size());
+}
+
+TEST(SortTests, SortNonEmptyDestinationList) {
+	Syn::LinkedList list1;
+
+	ASSERT_EQ(0, list1.size());
+
+	Syn::LinkedList sortedList(5);
+	ASSERT_TRUE(sortedList.appendFront(Syn::Car("Mazda", "RX7", 1995)));
+	ASSERT_FALSE(Syn::MergeSort::sortDescending(list1, sortedList));
 }
 
 TEST(SortTests, SortListOf1) {
@@ -160,7 +170,7 @@ TEST(SortTests, SortListOf1) {
 	ASSERT_EQ(1, list1.size());
 
 	Syn::LinkedList sortedList(1);
-	Syn::MergeSort::sortDescending(list1, sortedList);
+	EXPECT_TRUE(Syn::MergeSort::sortDescending(list1, sortedList));
 
 	ASSERT_EQ(1, sortedList.size());
 }

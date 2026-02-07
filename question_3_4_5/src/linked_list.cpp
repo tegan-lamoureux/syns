@@ -29,12 +29,12 @@ bool LinkedList::isEmpty() const
 	return head == nullptr;
 }
 
-bool LinkedList::appendFront(const Car &car)
+bool LinkedList::appendFront(const Car& car)
 {
 	bool result = false;
 
 	if (listSize < maxSize) {
-		// Make a new node,
+		// Make a new node, then..
 		std::unique_ptr<Node> newNode = std::make_unique<Node>();
 		newNode->data = std::make_unique<Car>(car.getMake(), car.getModel(), car.getYear());
 
@@ -48,7 +48,7 @@ bool LinkedList::appendFront(const Car &car)
 			head = std::move(newNode);
 		}
 
-		listSize++;
+		++listSize;
 		result = true;
 	}
 
@@ -62,7 +62,7 @@ ListIterator LinkedList::begin() const
 
 ListIterator LinkedList::end() const
 {
-	return ListIterator();
+	return ListIterator(); // last_node->next == empty iterator
 }
 
 
@@ -75,13 +75,13 @@ ListIterator::ListIterator()
 {
 }
 
-ListIterator::ListIterator(const std::unique_ptr<Node> &node)
+ListIterator::ListIterator(const std::unique_ptr<Node>& node)
 	: currentNode{node.get()},
 	  previousNode{nullptr}
 {
 }
 
-ListIterator &ListIterator::operator++()
+ListIterator& ListIterator::operator++()
 {
 	// Move down the list by 1 list item
 	if (currentNode != nullptr) {
@@ -94,16 +94,16 @@ ListIterator &ListIterator::operator++()
 ListIterator ListIterator::operator++(int)
 {
 	ListIterator temp = *this; // save un-iterated copy for returning (this is post-increment)
-	++ *this;
+	++ *this; // cheat with our already defined preincrement
 	return temp;
 }
 
-bool ListIterator::operator!=(const ListIterator &other) const
+bool ListIterator::operator!=(const ListIterator& other) const
 {
 	return this->currentNode != other.currentNode;
 }
 
-bool ListIterator::operator==(const ListIterator &other) const
+bool ListIterator::operator==(const ListIterator& other) const
 {
 	return this->currentNode == other.currentNode;
 }

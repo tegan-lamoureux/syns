@@ -22,23 +22,26 @@ public:
 class ListIterator {
 public:
 	ListIterator();
-	ListIterator(const std::unique_ptr<Node> &node);
+	ListIterator(const std::unique_ptr<Node>& node);
 
-	ListIterator &operator++();   // pre-increment
+	ListIterator& operator++();   // pre-increment
 	ListIterator operator++(int); // post-increment
-	bool operator!=(const ListIterator &other) const;
-	bool operator==(const ListIterator &other) const;
+	bool operator!=(const ListIterator& other) const;
+	bool operator==(const ListIterator& other) const;
 	Car& operator*() const;
 
 private:
-	Node *previousNode;
-	Node *currentNode;
+	Node* previousNode;
+	Node* currentNode;
 };
 
 
 class LinkedList {
 	// A lot of ways to do this. This introduces tight coupling that I'm not a big fan 
 	// of, but allows keeping the node structure and raw pointers hidden.
+	//
+	// I wrote a merge sort for a linked list, specifically, this linked list, instead
+	// of a generic STL container, so I feel this coupling is okay. -T
 	friend class MergeSort;
 
 public:

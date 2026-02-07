@@ -11,9 +11,9 @@ class MergeSort {
 public:
 
 	// Per the requirements, this takes in an empty list and fills that list with all data from
-	// this list, but sorted in descending order. This means it *does* allocate memory.
+	// the original, but sorted in descending order. This means it *does* allocate memory.
 	//
-	// Returns false if the input list is not empty or this list is empty. True otherwise.
+	// Returns false if the input list is not empty OR original list is empty. True otherwise.
 	static bool sortDescending(const LinkedList& original, LinkedList& sorted)
 	{
 		bool result = false;
@@ -36,6 +36,7 @@ public:
 private:
 
 	// Required since we need to traverse to find list midpoint (&head b/c head is modified)
+	// Returns pointer to start of second list (midpoint++), breaks head's list halfway through
 	static std::unique_ptr<Node> split(std::unique_ptr<Node>& head)
 	{
 		Node* slow = head.get();
