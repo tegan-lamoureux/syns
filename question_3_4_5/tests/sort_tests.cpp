@@ -3,7 +3,7 @@
 
 #include "car.h"
 #include "linked_list.h"
-
+#include "merge_sort.h"
 
 // The one, the only.
 // Build two lists, different order. Sort both, check proper order.
@@ -40,7 +40,7 @@ TEST(SortTests, Sort) {
 
 	// Sort first
 	Syn::LinkedList sortedList(5);
-	list1.sortDescending(sortedList);
+	Syn::MergeSort::sortDescending(list1, sortedList);
 
 	// // Check list is in ascending order. 
 	std::cout << std:: endl << "Check first sort: " << std::endl;
@@ -61,7 +61,7 @@ TEST(SortTests, Sort) {
 
 	// Sort second
 	Syn::LinkedList sortedList2(5);
-	list2.sortDescending(sortedList2);
+	Syn::MergeSort::sortDescending(list2, sortedList2);
 
 	// // Check list is in ascending order. 
 	std::cout << std:: endl << "Check second sort: " << std::endl;
@@ -99,7 +99,7 @@ TEST(SortTests, SortListFullOfDuplicates) {
 	ASSERT_EQ(5, list1.size());
 
 	Syn::LinkedList sortedList(5);
-	list1.sortDescending(sortedList);
+	Syn::MergeSort::sortDescending(list1, sortedList);
 
 	uint32_t previousYear = 0;
 	uint32_t currentYear  = 0;
@@ -129,7 +129,7 @@ TEST(SortTests, SortListFullOfBadData) {
 	ASSERT_EQ(5, list1.size());
 
 	Syn::LinkedList sortedList(5);
-	list1.sortDescending(sortedList);
+	Syn::MergeSort::sortDescending(list1, sortedList);
 
 	uint32_t previousYear = 0;
 	uint32_t currentYear  = 0;
@@ -149,7 +149,7 @@ TEST(SortTests, SortEmptyList) {
 	ASSERT_EQ(0, list1.size());
 
 	Syn::LinkedList sortedList;
-	list1.sortDescending(sortedList);
+	Syn::MergeSort::sortDescending(list1, sortedList);
 
 	ASSERT_EQ(0, sortedList.size());
 }
@@ -160,7 +160,7 @@ TEST(SortTests, SortListOf1) {
 	ASSERT_EQ(1, list1.size());
 
 	Syn::LinkedList sortedList(1);
-	list1.sortDescending(sortedList);
+	Syn::MergeSort::sortDescending(list1, sortedList);
 
 	ASSERT_EQ(1, sortedList.size());
 }
@@ -172,7 +172,7 @@ TEST(SortTests, SortListOf2) {
 	ASSERT_EQ(2, list1.size());
 
 	Syn::LinkedList sortedList(2);
-	list1.sortDescending(sortedList);
+	Syn::MergeSort::sortDescending(list1, sortedList);
 
 	ASSERT_EQ(2, sortedList.size());
 
@@ -190,7 +190,7 @@ TEST(SortTests, SortListOf3) {
 	ASSERT_EQ(3, list1.size());
 
 	Syn::LinkedList sortedList(3);
-	list1.sortDescending(sortedList);
+	Syn::MergeSort::sortDescending(list1, sortedList);
 
 	ASSERT_EQ(3, sortedList.size());
 
