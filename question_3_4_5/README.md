@@ -63,15 +63,3 @@ With dynamic memory, I like checking with valgrind. Please find the output below
 ==82501== For lists of detected and suppressed errors, rerun with: -s
 ==82501== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
-
-## Building & Running Tests (Linux)
-
-From the solution directory:
-
-1. Initialize cmake: `cmake -S . -B build`
-2. Build the tests: `cmake --build build`
-3. Run all tests: `build/linked_list_tests`
-4. Run only the sort test: `./linked_list_tests --gtest_filter="SortTests.*"`
-
-### Note: 
-This should build cross-platform, but I only had a linux computer to develop on. Commands will need to be modified slightly to build under Windows.

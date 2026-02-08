@@ -16,6 +16,9 @@ Tests weren't required for this solution per the prompt, but I find test-driven-
 
 The google test suite is downloaded and built automatically with CMake.
 
+### Sources
+I used the gtest quick-start documentation for fast bringup of my CMakeLists.txt, [found here](https://google.github.io/googletest/quickstart-cmake.html).
+
 ### Heap Check
 
 With dynamic memory, I like checking with valgrind. Please find the output below:
@@ -37,18 +40,3 @@ With dynamic memory, I like checking with valgrind. Please find the output below
 ==81897== For lists of detected and suppressed errors, rerun with: -s
 ==81897== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
-
-### Sources
-I used the gtest quick-start documentation for fast bringup of my CMakeLists.txt, [found here](https://google.github.io/googletest/quickstart-cmake.html).
-
-
-## Building & Running Tests (Linux)
-
-From the solution directory:
-
-1. Initialize cmake: `cmake -S . -B build`
-2. Build the tests: `cmake --build build`
-3. Run the tests: `build/circular_buffer_test`
-
-### Note: 
-This should build cross-platform, but I only had a linux computer to develop on. Commands will need to be modified slightly to build under Windows.
